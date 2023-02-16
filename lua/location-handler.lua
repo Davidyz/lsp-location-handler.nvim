@@ -33,8 +33,8 @@ Plugin.setup = function(opts)
   end
 
   for k, v in pairs(opts) do
-    if Plugin.config.k ~= nil then
-      Plugin.config.k = v
+    if Plugin.config[k] ~= nil then
+      Plugin.config[k] = v
     end
   end
   for _, attribute in ipairs(Plugin.config.binded_handlers) do
