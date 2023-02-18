@@ -16,8 +16,13 @@ Plugin.config = default_config
 Plugin.handler = function(original_handler)
   return function(err, result, ctx, config)
     if
-        Plugin.force_open
-        or (vim.tbl_islist(result) and #result >= 1 and result[1].uri:gsub("file://", "") ~= vim.fn.expand("%:p"))
+      Plugin.force_open
+      or (
+        vim.tbl_islist(result)
+        and #result >= 1
+        and type(result[1]) == "string"
+        and result[1].uri:gsub("file://", "") ~= vim.fn.expand("%:p")
+      )
     then
       vim.api.nvim_command(Plugin.config.open_cmd)
     end
