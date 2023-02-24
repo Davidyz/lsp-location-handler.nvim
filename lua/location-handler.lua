@@ -20,7 +20,7 @@ Plugin.handler = function(original_handler)
       or (
         vim.tbl_islist(result)
         and #result >= 1
-        and type(result[1]) == "string"
+        and type(result[1].uri) == "string"
         and result[1].uri:gsub("file://", "") ~= vim.fn.expand("%:p")
       )
     then
